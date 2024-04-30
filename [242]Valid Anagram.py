@@ -36,5 +36,24 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
-        
+        word_count = {}
+        for word in s:
+            if word in word_count:
+                word_count[word] += 1
+            else:
+                word_count[word] = 1
+
+        for word in t:
+            if word in word_count:
+                if word_count[word] > 0:
+                    word_count[word] -= 1
+                else:
+                    return False
+            else:
+                return False
+        all_zero = all(value == 0 for value in word_count.values())
+        if all_zero:
+            return True
+        else:
+            return False
 # leetcode submit region end(Prohibit modification and deletion)
